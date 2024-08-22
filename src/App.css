@@ -1,6 +1,8 @@
 .login-button {
   display: flex;
   justify-content: flex-end;
+  /* 커서 올리면 손가락 모양뜨게하기 */
+  cursor: pointer;
 }
 
 .nav-section {
@@ -24,4 +26,12 @@
 
 .search-area {
   justify-content: flex-end;
+}
+
+.card-detail:hover img {
+  transform: scale(1.1);
+}
+.img {
+  width: 310px;
+  overflow: hidden;
 }
