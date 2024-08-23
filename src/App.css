@@ -35,3 +35,8 @@
   width: 310px;
   overflow: hidden;
 }
+
+.product-img {
+  display: flex;
+  justify-content: flex-end;
+}
