@@ -12,6 +12,7 @@
 
 .menu-list {
   display: flex;
+  justify-content: center;
   list-style-type: none;
 }
 
@@ -20,12 +21,16 @@
 }
 
 .menu-area {
-  display: flex;
-  justify-content: center;
+  /* display: flex;
+  justify-content: center; */
+  position: relative;
 }
 
 .search-area {
-  justify-content: flex-end;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .card-detail:hover img {
