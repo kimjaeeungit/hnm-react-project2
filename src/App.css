@@ -46,3 +46,40 @@
   display: flex;
   justify-content: flex-end;
 }
+/* 
+@media (min-width: 768px) {
+  .container {
+    max-width: 800px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 1000px;
+  }
+} */
+
+/* max-width 값을 설정하면 가로가 설정한 값 이하로 떨어졌을때 해당 css가 적용 */
+@media screen and (max-width: 600px) {
+  .sideBar {
+    width: 0px;
+    display: none; /* 모바일 화면에서 사이드바 숨기기 */
+  }
+  .sideBarOpen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100%;
+    overflow-y: auto;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+  }
+  /* 모바일 화면에서의 다른 스타일들 */
+  .navItem,
+  .subNavItem {
+    padding: 10px;
+    font-size: 0.8em;
+  }
+}

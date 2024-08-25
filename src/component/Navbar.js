@@ -4,7 +4,15 @@ import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 
-const Navbar = ({ authenticate, setAuthenticate }) => {
+const Navbar = ({
+  authenticate,
+  setAuthenticate,
+  showSideBar,
+  setShowSideBar,
+}) => {
+  const toggleSideBar = () => {
+    setShowSideBar(true);
+  };
   const menuList = [
     '여성',
     'Divided',
@@ -37,6 +45,18 @@ const Navbar = ({ authenticate, setAuthenticate }) => {
   };
   return (
     <div>
+      <div className="navBar">
+        <button className="menuToggle" onClick={toggleSideBar}>
+          메뉴 펼치기
+        </button>
+        <ul ClassName="navList">
+          <li className="navItem">
+            {/* <link className="navLink" href="/">
+              home
+            </link> */}
+          </li>
+        </ul>
+      </div>
       <div>
         {authenticate === false ? (
           <div className="login-button" onClick={goToLogin}>

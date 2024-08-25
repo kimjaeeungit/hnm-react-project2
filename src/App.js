@@ -5,9 +5,11 @@ import ProductAll from './page/ProductAll';
 import Login from './page/Login';
 import ProductDetail from './page/ProductDetail';
 import Navbar from './component/Navbar';
+import SideBar from './component/SideBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState } from 'react';
 import PrivateRoute from './routes/PrivateRoute';
+import { useMediaQuery } from 'react-responsive';
 
 // 1. 전체상품페이지, 로그인, 상품상세페이지
 // 1-1 Navigation 바 만들기 (그대로 유지하기)
@@ -20,30 +22,69 @@ import PrivateRoute from './routes/PrivateRoute';
 // 8. 로그인을 하면 로그아웃이 보이고 로그아웃을 하면 로그인이 보인다.
 
 function App() {
+  const isSmallScreen = useMediaQuery({ maxWidth: 767 });
   //로그인을 한 유저인지 아닌지 알려주는 state
   const [authenticate, setAuthenticate] = useState(false);
+  const [showSideBar, setShowSideBar] = useState(false);
+  // const [showMobileSideBar, setShowMobileSideBar] = useState(false);
   useEffect(() => {
     console.log('authenticate', authenticate);
   }, [authenticate]);
   return (
     <div>
-      <Navbar setAuthenticate={setAuthenticate} authenticate={authenticate} />
-      <Routes>
-        <Route path="/" element={<ProductAll></ProductAll>} />
-        <Route
-          path="/login"
-          element={
-            <Login
-              setAuthenticate={setAuthenticate}
-              authenticate={authenticate}
-            ></Login>
-          }
-        />
-        <Route
-          path="/product/:id"
-          element={<PrivateRoute authenticate={authenticate} />}
-        />
-      </Routes>
+      {isSmallScreen ? (
+        <div>
+          <Navbar
+            authenticate={authenticate}
+            setAuthenticate={setAuthenticate}
+            showSideBar={showSideBar}
+            setShowSideBar={setShowSideBar}
+          />
+          <SideBar showSideBar={showSideBar} setShowSideBar={setShowSideBar} />
+          <Routes>
+            <Route path="/" element={<ProductAll></ProductAll>} />
+            <Route
+              path="/login"
+              element={
+                <Login
+                  setAuthenticate={setAuthenticate}
+                  authenticate={authenticate}
+                ></Login>
+              }
+            />
+            <Route
+              path="/product/:id"
+              element={<PrivateRoute authenticate={authenticate} />}
+            />
+          </Routes>
+        </div>
+      ) : (
+        <div>
+          <Navbar
+            showSideBar={showSideBar}
+            setShowSideBar={setShowSideBar}
+            setAuthenticate={setAuthenticate}
+            authenticate={authenticate}
+          />
+          <SideBar showSideBar={showSideBar} />
+          <Routes>
+            <Route path="/" element={<ProductAll></ProductAll>} />
+            <Route
+              path="/login"
+              element={
+                <Login
+                  setAuthenticate={setAuthenticate}
+                  authenticate={authenticate}
+                ></Login>
+              }
+            />
+            <Route
+              path="/product/:id"
+              element={<PrivateRoute authenticate={authenticate} />}
+            />
+          </Routes>
+        </div>
+      )}
     </div>
   );
 }
